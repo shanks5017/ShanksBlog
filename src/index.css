@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@700;800&family=Outfit:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Syne", sans-serif;
+  --font-body: "Inter", sans-serif;
+  
+  --color-obsidian-bg: #000000;
+  --color-obsidian-secondary: #0A0A0A;
+  --color-obsidian-accent: #B8EF43;
+  --color-obsidian-muted: #A1A1AA;
+}
+
+@layer base {
+  body {
+    @apply bg-obsidian-bg text-white font-sans antialiased selection:bg-obsidian-accent selection:text-black;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tighter text-obsidian-accent;
+    text-shadow: 0 0 20px rgba(184, 239, 67, 0.3);
+  }
+}
+
+@layer utilities {
+  .grid-12 {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1.5rem;
+  }
+
+  .fluid-text-hero {
+    font-size: clamp(3rem, 10vw, 8rem);
+    line-height: 0.85;
+    letter-spacing: -0.04em;
+  }
+
+  .fluid-text-h2 {
+    font-size: clamp(2rem, 5vw, 4rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  .custom-cursor {
+    width: 20px;
+    height: 20px;
+    background: #B8EF43;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: normal;
+    transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .markdown-body {
+    @apply prose prose-invert max-w-none;
+    @apply prose-headings:font-display prose-headings:tracking-tighter prose-headings:text-obsidian-accent;
+    @apply prose-p:font-body prose-p:text-obsidian-muted prose-p:leading-relaxed prose-p:text-xl md:prose-p:text-2xl;
+    @apply prose-a:text-obsidian-accent prose-a:no-underline hover:prose-a:underline;
+    @apply prose-strong:text-white prose-blockquote:border-obsidian-accent prose-blockquote:text-white;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 20px rgba(184, 239, 67, 0.3);
+  }
+
+  .bg-noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+  }
+
+  .writing-mode-vertical {
+    writing-mode: vertical-rl;
+  }
+}
